@@ -56,6 +56,5 @@ void ThemSanPhamVaoGioHang(char TenSanPham[], int *SoLuong, float *Gia, float *T
 
         printf("Ban co muon mua them (y/n)? ");
         scanf(" %c", &TiepTuc);
-    } while (TiepTuc == 'y');
-    return 0;
+    } while (TiepTuc == 'y' || TiepTuc == 'Y');
 }
