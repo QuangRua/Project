@@ -22,7 +22,7 @@ float TinhTongTien(int SoLuong, float Gia, float *Thue) {
 }
 
 float KiemTraGiamGia(float TongTien) {
-    if (TongTien >= 1000) {
+    if (TongTien >= 1000000) {
         printf("Chuc mung! Ban duoc giam gia 15%%.\n");
         return TongTien * 0.15;
     } else {
@@ -31,7 +31,7 @@ float KiemTraGiamGia(float TongTien) {
 }
 
 void InThongTinDonHang(char TenKhachHang[], char TenSanPham[], int SoLuong, float Gia, float TongTien, float Thue, float GiamGia) {
-    printf("\n---------------------- THONG TIN DON HANG ----------------------\n");
+    printf("THONG TIN DON HANG \n");
     printf("Ten khach hang: %s\n", TenKhachHang);
     printf("San pham: %s\n", TenSanPham);
     printf("So luong: %d\n", SoLuong);
@@ -40,21 +40,26 @@ void InThongTinDonHang(char TenKhachHang[], char TenSanPham[], int SoLuong, floa
     printf("Thue (10%%): %.2f VND\n", Thue);
     printf("Giam gia: %.2f VND\n", GiamGia);
     printf("Tong thanh toan: %.2f VND\n", TongTien + Thue - GiamGia);
-    printf("---------------------------------------------------------------\n");
+    printf("\n");
 }
 
 void ThemSanPhamVaoGioHang(char TenSanPham[], int *SoLuong, float *Gia, float *TongTien, float *Thue, float *GiamGia) {
     char TiepTuc;
+    char TenKhachHang[100];
+
+    printf("Nhap ten khach hang: ");
+    fgets(TenKhachHang, 100, stdin);
+    TenKhachHang[strcspn(TenKhachHang, "\n")] = '\0';
+
     do {
         printf("\nNhap thong tin san pham:\n");
         NhapSanPham(TenSanPham, SoLuong, Gia);
 
         *TongTien = TinhTongTien(*SoLuong, *Gia, Thue);
         *GiamGia = KiemTraGiamGia(*TongTien);
-
-        InThongTinDonHang("Khach Hang", TenSanPham, *SoLuong, *Gia, *TongTien, *Thue, *GiamGia);
+        InThongTinDonHang(TenKhachHang,TenSanPham, *SoLuong, *Gia, *TongTien, *Thue, *GiamGia);
 
         printf("Ban co muon mua them (y/n)? ");
         scanf(" %c", &TiepTuc);
-    } while (TiepTuc == 'y' || TiepTuc == 'Y');
+    } while (TiepTuc == 'y');
 }
